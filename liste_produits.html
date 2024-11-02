@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Produits - Cosmetics Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">Cosmetics Shop</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <h2>Liste des Produits</h2>
+        <div id="productList" class="row">
+            <!-- Les produits seront affichés ici -->
+        </div>
+        
+    </main>
+
+    <footer>
+        <div class="container text-center mt-5">
+            <span>Copyright &copy; <span>Your Company Name</span></span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const products = JSON.parse(localStorage.getItem("products")) || [];
+            const productList = document.getElementById("productList");
+
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.className = "col-md-4 mb-4";
+                productCard.innerHTML = `
+                    <div class="card">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}">
+                        <div class="card-body">
+                            <h5 class="card-title">${product.name}</h5>
+                            <p class="card-text">Prix: €${product.price}</p>
+                            <p class="card-text">Catégorie: ${product.category} - Sous-catégorie: ${product.subcategory}</p>
+                        </div>
+                    </div>
+                `;
+                productList.appendChild(productCard);
+            });
+        });
+    </script>
+</body>
+</html>
