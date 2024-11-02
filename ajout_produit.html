@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Produit - Cosmetics Shop</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Ajouter un Produit</h2>
+        <form id="addProductForm">
+            <div class="form-group">
+                <label for="productName">Nom du Produit</label>
+                <input type="text" class="form-control" id="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Prix</label>
+                <input type="number" class="form-control" id="productPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="productImage">URL de l'Image</label>
+                <input type="text" class="form-control" id="productImage" required>
+            </div>
+            <div class="form-group">
+                <label for="productCategory">Catégorie</label>
+                <select class="form-control" id="productCategory" required>
+                    <option value="maquillage">Maquillage</option>
+                    <option value="parfums">Parfums</option>
+                    <option value="soins">Soins de la Peau</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="productSubcategory">Sous Catégorie</label>
+                <select class="form-control" id="productSubcategory" required>
+                    <option value="rouge-a-levres">Rouge à Lèvres</option>
+                    <option value="mascara">Mascara</option>
+                    <option value="fonds-de-teint">Fonds de Teint</option>
+                    <option value="feminin">Parfums Féminins</option>
+                    <option value="masculin">Parfums Masculins</option>
+                    <option value="serum">Sérum</option>
+                    <option value="creme">Crème Hydratante</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter le Produit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('addProductForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('productPrice').value;
+            const image = document.getElementById('productImage').value;
+            const category = document.getElementById('productCategory').value;
+            const subcategory = document.getElementById('productSubcategory').value;
+
+            const product = {
+                name,
+                price: parseFloat(price),
+                image,
+                category,
+                subcategory
+            };
+
+            // Récupérer la structure des produits depuis localStorage ou créer une nouvelle structure
+            const catalog = JSON.parse(localStorage.getItem('productCatalog')) || {
+                maquillage: {},
+                parfums: {},
+                soins: {}
+            };
+
+            // Vérifier si la catégorie existe, sinon initialiser
+            if (!catalog[category]) {
+                catalog[category] = {};
+            }
+
+            // Si la sous-catégorie n'existe pas, l'initialiser
+            if (!catalog[category][subcategory]) {
+                catalog[category][subcategory] = [];
+            }
+
+            // Ajouter le produit à la sous-catégorie appropriée
+            catalog[category][subcategory].push(product);
+
+            // Enregistrer la structure mise à jour dans localStorage
+            localStorage.setItem('productCatalog', JSON.stringify(catalog));
+
+            // Récupérer la liste des produits
+            const productsList = JSON.parse(localStorage.getItem('products')) || [];
+            productsList.push(product);
+            localStorage.setItem('products', JSON.stringify(productsList));
+
+            // Afficher une alerte et rediriger
+            alert('Produit ajouté avec succès!');
+            window.location.href = 'index.html'; // redirigez vers la page de votre choix
+        });
+    </script>
+</body>
+</html>
