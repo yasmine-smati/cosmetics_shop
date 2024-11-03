@@ -24,13 +24,13 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
         footer {
-            background-color: #e9ecef;
+            background-color: white;
             padding: 20px 0;
             text-align: center;
         }
         .s_cover {
             padding: 60px 0;
-            background-color: #ffcccb;
+            background-color: white;
             animation: fadeIn 1.5s ease-in-out;
             text-align: center;
             color: #333;
@@ -39,11 +39,11 @@
             margin-bottom: 30px;
         }
         .mega-menu {
-            min-width: 300px; /* Width of the mega menu */
+            min-width: 300px;
             padding: 20px;
         }
         .mega-menu h6 {
-            margin-bottom: 20px; /* Space between title and items */
+            margin-bottom: 20px;
         }
         .dropdown-item {
             padding: 5px 10px;
@@ -61,8 +61,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="#accueil">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
                         <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="ajout_produit.html">Ajouter un Produit</a></li>
+                        <li class="nav-item"><a class="nav-link" href="liste_produits.html">Liste des Produits</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produits</a>
                             <div class="dropdown-menu mega-menu" aria-labelledby="productsDropdown">
@@ -113,17 +115,60 @@
                         <div class="card">
                             <img src="3614273945165_new-rouge-pur-couture_main.jpg" class="card-img-top" alt="Produit1">
                             <div class="card-body">
-                                <h5 class="card-title">Rouge à lèvres</h5>
+                                <h5 class="card-title">Yves Saint Laurent - Rouge Pur Couture</h5>
                                 <p class="card-text">Rouge à lèvres hydratant avec une finition brillante.</p>
-                                <button class="btn btn-primary" onclick="ajouterAuPanier('Rouge à lèvres', 20.00)">Ajouter au panier</button>
+                                <button class="btn btn-primary" onclick="ajouterAuPanier('Yves Saint Laurent - Rouge Pur Couture', 20.00)">Ajouter au panier</button>
                             </div>
                         </div>
                     </div>
+
+
+                    <div class="col-md-4 product-card">
+                        <div class="card">
+                            <img src="112047172017_OF_F.jpg" class="card-img-top" alt="Produit4">
+                            <div class="card-body">
+                                <h5 class="card-title">Victoria's Secret - Mist (Love Spell) </h5>
+                                <p class="card-text">Fruité-floral, mélange de cerise et pêches.</p>
+                                <button class="btn btn-primary" onclick="ajouterAuPanier('Victoria s Secret - Mist (Love Spell) ', 20.00)">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 product-card">
+                        <div class="card">
+                            <img src="039_220107_PILLOW_TALK_PLUMP_P_MATTE_REV_MEDIUM_OPEN_RJ_2402.jpg" class="card-img-top" alt="Produit5">
+                            <div class="card-body">
+                                <h5 class="card-title">Charlotte Tilbury - Matte Revolution Lipstick</h5>
+                                <p class="card-text">Un rouge à lèvres mat avec une texture légère et hydratante, parfait pour un look chic et moderne.</p>
+                                <button class="btn btn-primary" onclick="ajouterAuPanier('Charlotte Tilbury - Matte Revolution Lipstick', 20.00)">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+                    <div class="col-md-4 product-card">
+                        <div class="card">
+                            <img src="cc2.webp"class="card-img-top" alt="Produit6">
+                            <div class="card-body">
+                                <h5 class="card-title">The Les Beiges Palette Regard</h5>
+                                <p class="card-text">collection magnifique qui propose une gamme de teintes neutres</p>
+                                <button class="btn btn-primary" onclick="ajouterAuPanier('The Les Beiges Palette Regard', 20.00)">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
                     <div class="col-md-4 product-card">
                         <div class="card">
                             <img src="2f_sku_183640_1000x1000_0.jpg" class="card-img-top" alt="Produit 2">
                             <div class="card-body">
-                                <h5 class="card-title">Mascara</h5>
+                                <h5 class="card-title">Too Faced - Better Than Sex Mascara</h5>
                                 <p class="card-text">Mascara volumateur pour un regard captivant.</p>
                                 <button class="btn btn-primary" onclick="ajouterAuPanier('Mascara', 15.00)">Ajouter au panier</button>
                             </div>
@@ -173,7 +218,6 @@
             alert('Produit ajouté au panier !');
         }
 
-        // Script pour rendre le menu fixe lors du défilement
         window.onscroll = function() {
             const navbar = document.getElementById("navbar");
             if (window.pageYOffset > navbar.offsetTop) {
