@@ -42,59 +42,47 @@
                     <option value="creme">Crème Hydratante</option>
                 </select>
             </div>
+            <div class="form-group">
+                <label for="productQuantity">Quantité</label>
+                <input type="number" class="form-control" id="productQuantity" required min="1">
+            </div>
             <button type="submit" class="btn btn-primary">Ajouter le Produit</button>
         </form>
+        <a href="liste_produits.html" class="btn btn-secondary mt-3">Voir la Liste des Produits</a>
     </div>
 
     <script>
         document.getElementById('addProductForm').addEventListener('submit', function(event) {
             event.preventDefault();
-
             const name = document.getElementById('productName').value;
             const price = document.getElementById('productPrice').value;
             const image = document.getElementById('productImage').value;
             const category = document.getElementById('productCategory').value;
             const subcategory = document.getElementById('productSubcategory').value;
+            const quantity = document.getElementById('productQuantity').value;
 
             const product = {
                 name,
                 price: parseFloat(price),
                 image,
                 category,
-                subcategory
+                subcategory,
+                quantity: parseInt(quantity)
             };
 
-            // Récupérer la structure des produits depuis localStorage ou créer une nouvelle structure
-            const catalog = JSON.parse(localStorage.getItem('productCatalog')) || {
-                maquillage: {},
-                parfums: {},
-                soins: {}
-            };
-
-            // Vérifier si la catégorie existe, sinon initialiser
-            if (!catalog[category]) {
-                catalog[category] = {};
-            }
-
-            // Si la sous-catégorie n'existe pas, l'initialiser
-            if (!catalog[category][subcategory]) {
-                catalog[category][subcategory] = [];
-            }
-
-            // Ajouter le produit à la sous-catégorie appropriée
-            catalog[category][subcategory].push(product);
-
-            // Enregistrer la structure mise à jour dans localStorage
-            localStorage.setItem('productCatalog', JSON.stringify(catalog));
-
-            // Récupérer la liste des produits
+            // Récupérer la liste des produits et ajouter le nouveau produit
             const productsList = JSON.parse(localStorage.getItem('products')) || [];
             productsList.push(product);
             localStorage.setItem('products', JSON.stringify(productsList));
 
-            // Afficher une alerte et rediriger
+            // Ajouter à la sous-catégorie
+            const subcategoryProducts = JSON.parse(localStorage.getItem(subcategory)) || [];
+            subcategoryProducts.push(product);
+            localStorage.setItem(subcategory, JSON.stringify(subcategoryProducts));
+
+            // Afficher une alerte et rediriger vers la liste des produits
             alert('Produit ajouté avec succès!');
-            window.location.href = 'index.html'; // redirigez vers la page de votre choix
+            window.location.href = 'liste_produits.html'; // Redirige vers la page de liste des produits
         });
     </script>
 </body>
