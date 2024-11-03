@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authentification - Cosmetics Shop</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function toggleSignup() {
+            const authForm = document.getElementById('authForm');
+            const signupForm = document.getElementById('signup');
+            if (signupForm.style.display === 'none') {
+                authForm.style.display = 'none';
+                signupForm.style.display = 'block';
+            } else {
+                authForm.style.display = 'block';
+                signupForm.style.display = 'none';
+            }
+        }
+
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newUsername = document.getElementById('newUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            // Simuler l'enregistrement de l'utilisateur (dans un vrai cas, vous feriez une requête API)
+            alert(`Compte créé pour ${newUsername}`);
+            
+            // Redirection vers la page d'accueil
+            window.location.href = 'index.html';
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -58,6 +83,10 @@
     </main>
 
     <footer>
-        <div 
+        <div class="container text-center mt-5">
+            <span>Copyright &copy; <span>Your Company Name</span></span>
+        </div>
+    </footer>
+</body>
+</html>
 
-  
